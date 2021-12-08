@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "soap": "^0.43.0",
+    "xml2js": "^0.4.23"
+  },
+  "name": "mnb-rates",
+  "description": "Node module that retrieves the actual currency exchange rates from the Hungarian National Bank SOAP API.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mondalaci/mnb-rates.git"
+  },
+  "keywords": [
+    "mnb",
+    "hungarian",
+    "national",
+    "bank",
+    "magyar",
+    "nemzeti",
+    "bank",
+    "currency",
+    "exchange",
+    "rates"
+  ],
+  "author": "Laszlo Monda",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/mondalaci/mnb-rates/issues"
+  },
+  "homepage": "https://github.com/mondalaci/mnb-rates#readme"
+}
