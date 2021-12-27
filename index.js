@@ -32,7 +32,7 @@ async function getMnbRawRates() {
 async function getMnbRates() {
     const res = await getMnbRawRates();
     rates = {};
-    for (rate of res) {
+    for (const rate of res) {
         rates[rate.$.curr] = +rate._.replace(',', '.') / +rate.$.unit;
     }
     return rates;
