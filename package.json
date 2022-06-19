@@ -3,10 +3,14 @@
     "soap": "^0.43.0",
     "xml2js": "^0.4.23"
   },
+  "type": "module",
   "name": "mnb-rates",
   "description": "Retrieves the actual currency exchange rates from the Hungarian National Bank SOAP API.",
-  "version": "1.0.1",
-  "main": "index.js",
+  "version": "2.0.0",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=14.16"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -7,10 +7,9 @@ Install with:
 Then run the following script:
 
 ```js
-const getMnbRates = require('mnb-rates');
-(async function() {
-    console.log(await getMnbRates());
-})();
+import {getMnbRates} from 'mnb-rates';
+const rates = await getMnbRates()
+console.log(rates);
 ```
 
 Which should print:

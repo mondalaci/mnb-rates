@@ -1,5 +1,5 @@
-const soap = require('soap');
-const xml2js = require('xml2js');
+import soap from 'soap';
+import xml2js from 'xml2js';
 
 function wsdlRequest(wsdlUrl, method, req) {
     return new Promise((resolve, reject) => {
@@ -29,13 +29,11 @@ async function getMnbRawRates() {
     return rawRates;
 }
 
-async function getMnbRates() {
+export async function getMnbRates() {
     const res = await getMnbRawRates();
-    rates = {};
+    const rates = {};
     for (const rate of res) {
         rates[rate.$.curr] = +rate._.replace(',', '.') / +rate.$.unit;
     }
     return rates;
 }
-
-module.exports = getMnbRates;
