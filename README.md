@@ -8,7 +8,7 @@ Then run the following script:
 
 ```js
 import {getMnbRates} from 'mnb-rates';
-const rates = await getMnbRates()
+const rates = await getMnbRates();
 console.log(rates);
 ```
 
