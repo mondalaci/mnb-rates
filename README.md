@@ -4,51 +4,109 @@ Install with:
 
 `npm i mnb-rates`
 
-Then run the following script:
+Usage examples:
 
 ```js
-import {getMnbRates} from 'mnb-rates';
-const rates = await getMnbRates();
+import {
+  getCurrentExchangeRates,
+  getCurrencies,
+  getCurrencyUnits,
+  getDateInterval,
+  getExchangeRates,
+  getInfo
+} from 'mnb-rates';
+
+// Get current exchange rates
+const rates = await getCurrentExchangeRates();
 console.log(rates);
-```
+// Output:
+// {
+//   AUD: 224.19,
+//   BGN: 203.56,
+//   BRL: 61.37,
+//   CAD: 248.86,
+//   CHF: 426.45,
+//   CNY: 47.32,
+//   CZK: 16.21,
+//   DKK: 53.34,
+//   EUR: 398.13,
+//   GBP: 458.63,
+//   HKD: 43.14,
+//   IDR: 0.0208,
+//   ILS: 101.44,
+//   INR: 3.92,
+//   ISK: 2.8,
+//   JPY: 2.3105,
+//   KRW: 0.24710000000000001,
+//   MXN: 18.26,
+//   MYR: 80.31,
+//   NOK: 33.57,
+//   NZD: 205.06,
+//   PHP: 5.98,
+//   PLN: 93.64,
+//   RON: 78.43,
+//   RSD: 3.4,
+//   RUB: 4.28,
+//   SEK: 35.61,
+//   SGD: 265.28,
+//   THB: 10.5,
+//   TRY: 8.37,
+//   UAH: 8.11,
+//   USD: 338.6,
+//   ZAR: 19.24
+// }
 
-Which should print:
+// Get all supported currencies
+const currencies = await getCurrencies();
+console.log(currencies);
+// Output:
+// [
+//   'HUF', 'EUR', 'AUD', 'BGN', 'BRL', 'CAD', 'CHF',
+//   'CNY', 'CZK', 'DKK', 'GBP', 'HKD', 'HRK', 'IDR',
+//   'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR',
+//   'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'RSD', 'RUB',
+//   'SEK', 'SGD', 'THB', 'TRY', 'UAH', 'USD', 'ZAR',
+//   'ATS', 'AUP', 'BEF', 'BGL', 'CSD', 'CSK', 'DDM',
+//   'DEM', 'EEK', 'EGP', 'ESP', 'FIM', 'FRF', 'GHP',
+//   'GRD', 'IEP', 'ITL', 'KPW', 'KWD', 'LBP', 'LTL',
+//   'LUF', 'LVL', 'MNT', 'NLG', 'OAL', 'OBL', 'OFR',
+//   'ORB', 'PKR', 'PTE', 'ROL', 'SDP', 'SIT', 'SKK',
+//   'SUR', 'VND', 'XEU', 'XTR', 'YUD'
+// ]
 
-```js
-{
-  AUD: 232.4,
-  BGN: 187.95,
-  BRL: 58.03,
-  CAD: 258.07,
-  CHF: 352.48,
-  CNY: 51.3,
-  CZK: 14.44,
-  DKK: 49.44,
-  EUR: 367.62,
-  GBP: 431.4,
-  HKD: 41.77,
-  HRK: 48.85,
-  IDR: 0.0227,
-  ILS: 104.83,
-  INR: 4.32,
-  ISK: 2.5,
-  JPY: 2.8699,
-  KRW: 0.2768,
-  MXN: 15.51,
-  MYR: 77.11,
-  NOK: 36.32,
-  NZD: 220.9,
-  PHP: 6.48,
-  PLN: 80.05,
-  RON: 74.3,
-  RSD: 3.13,
-  RUB: 4.42,
-  SEK: 35.85,
-  SGD: 238.72,
-  THB: 9.73,
-  TRY: 23.8,
-  UAH: 11.97,
-  USD: 325.76,
-  ZAR: 20.59
-}
+// Get currency units for specific currencies
+const units = await getCurrencyUnits('USD,EUR,JPY');
+console.log(units);
+// Output:
+// { EUR: 1, JPY: 100, USD: 1 }
+
+// Get available date interval
+const interval = await getDateInterval();
+console.log(interval);
+// Output:
+// { startdate: '1949-01-03', enddate: '2025-07-24' }
+
+// Get exchange rates for a date range and currencies
+const ratesRange = await getExchangeRates({
+  startDate: '2025-01-01',
+  endDate: '2025-02-01',
+  currencyNames: 'EUR,USD'
+});
+console.log(ratesRange);
+// Output:
+// [
+//   { date: '2025-01-31', eur: 407.91, usd: 392.83 },
+//   { date: '2025-01-30', eur: 407.41, usd: 391.44 },
+//   ...
+// ]
+
+// Get info about available data
+const info = await getInfo();
+console.log(info);
+// Output:
+// {
+//   firstDate: [ '1949-01-03' ],
+//   lastDate: [ '2025-07-24' ],
+//   currencies: [ ... ]
+// }
 ```

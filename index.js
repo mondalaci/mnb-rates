@@ -80,8 +80,8 @@ export async function getExchangeRates({ startDate, endDate, currencyNames }) {
 export async function getInfo() {
     const parsed = await wsdlRequest('GetInfo', {}, 'GetInfoResult');
     return {
-        FirstDate: parsed.MNBExchangeRatesQueryValues.FirstDate,
-        LastDate: parsed.MNBExchangeRatesQueryValues.LastDate,
-        Currencies: parsed.MNBExchangeRatesQueryValues.Currencies[0].Curr
+        firstDate: parsed.MNBExchangeRatesQueryValues.FirstDate,
+        lastDate: parsed.MNBExchangeRatesQueryValues.LastDate,
+        currencies: parsed.MNBExchangeRatesQueryValues.Currencies[0].Curr
     };
 }
