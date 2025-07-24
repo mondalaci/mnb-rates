@@ -27,7 +27,7 @@ function wsdlRequest(method, req, resultPropertyName) {
     });
 }
 
-export async function GetCurrentExchangeRates() {
+export async function getCurrentExchangeRates() {
     const ratesRoot = await wsdlRequest('GetCurrentExchangeRates', {}, 'GetCurrentExchangeRatesResult');
     const rawRates = ratesRoot.MNBCurrentExchangeRates.Day[0].Rate;
     const rates = {};
@@ -37,12 +37,12 @@ export async function GetCurrentExchangeRates() {
     return rates;
 }
 
-export async function GetCurrencies() {
+export async function getCurrencies() {
     const parsed = await wsdlRequest('GetCurrencies', {}, 'GetCurrenciesResult');
     return parsed.MNBCurrencies.Currencies[0].Curr;
 }
 
-export async function GetCurrencyUnits(currencyNames) {
+export async function getCurrencyUnits(currencyNames) {
     const parsed = await wsdlRequest('GetCurrencyUnits', { currencyNames }, 'GetCurrencyUnitsResult');
     const unitsArr = parsed?.MNBCurrencyUnits?.Units?.[0]?.Unit || [];
     const entries = unitsArr.map(e => [e['$'].curr, parseFloat(e['_'].replace(',', '.'))]);
@@ -55,14 +55,14 @@ export async function GetCurrencyUnits(currencyNames) {
     return result;
 }
 
-export async function GetDateInterval() {
+export async function getDateInterval() {
     const parsed = await wsdlRequest('GetDateInterval', {}, 'GetDateIntervalResult');
     return parsed.MNBStoredInterval.DateInterval[0]['$'];
 }
 
-export async function GetExchangeRates({ startDate, endDate, currencyNames }) {
+export async function getExchangeRates({ startDate, endDate, currencyNames }) {
     if (!startDate || !endDate || !currencyNames) {
-        throw new Error('GetExchangeRates requires startDate, endDate, and currencyNames parameters.');
+        throw new Error('getExchangeRates requires startDate, endDate, and currencyNames parameters.');
     }
     const req = { startDate, endDate, currencyNames };
     const parsed = await wsdlRequest('GetExchangeRates', req, 'GetExchangeRatesResult');
@@ -77,7 +77,7 @@ export async function GetExchangeRates({ startDate, endDate, currencyNames }) {
     });
 }
 
-export async function GetInfo() {
+export async function getInfo() {
     const parsed = await wsdlRequest('GetInfo', {}, 'GetInfoResult');
     return {
         FirstDate: parsed.MNBExchangeRatesQueryValues.FirstDate,
